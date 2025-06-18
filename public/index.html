@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideollamadasApp - Llamadas Locales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-video"></i> VideollamadasApp</h1>
+            <p>Aplicación de videollamadas local</p>
+        </header>
+
+        <!-- Pantalla de inicio -->
+        <div id="welcome-screen" class="screen">
+            <div class="welcome-card">
+                <h2>¡Bienvenido!</h2>
+                <p>Crea una nueva sala o únete a una existente</p>
+                
+                <div class="form-group">
+                    <label for="username">Tu nombre:</label>
+                    <input type="text" id="username" placeholder="Ingresa tu nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="room-id">ID de la sala:</label>
+                    <input type="text" id="room-id" placeholder="ID de la sala (opcional)">
+                </div>
+                
+                <div class="buttons">
+                    <button id="create-room" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Crear Nueva Sala
+                    </button>
+                    <button id="join-room" class="btn btn-secondary">
+                        <i class="fas fa-sign-in-alt"></i> Unirse a Sala
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de videollamada -->
+        <div id="call-screen" class="screen hidden">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="local-video" autoplay muted playsinline></video>
+                    <div class="video-label">Tú</div>
+                </div>
+                <div class="video-wrapper">
+                    <video id="remote-video" autoplay playsinline></video>
+                    <div class="video-label">Participante</div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="room-info">
+                    <span id="room-info">Sala: <span id="current-room"></span></span>
+                    <span id="user-info">Usuario: <span id="current-user"></span></span>
+                </div>
+                
+                <div class="control-buttons">
+                    <button id="toggle-video" class="control-btn">
+                        <i class="fas fa-video"></i>
+                    </button>
+                    <button id="toggle-audio" class="control-btn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button id="share-screen" class="control-btn">
+                        <i class="fas fa-desktop"></i>
+                    </button>
+                    <button id="end-call" class="control-btn end-call">
+                        <i class="fas fa-phone-slash"></i>
+                    </button>
+                </div>
+                
+                <div class="copy-room">
+                    <button id="copy-room-id" class="btn btn-copy">
+                        <i class="fas fa-copy"></i> Copiar ID de Sala
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensajes de estado -->
+        <div id="status-messages" class="status-messages"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
